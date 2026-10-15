@@ -23,63 +23,63 @@ void main() {
     await loader.load();
   });
 
-  /// category id -> (spec, theme, space-separated sample value)
+  /// category id -> (spec, theme, `|`-separated, one per slot sample value)
   final Map<String, (PlateSpec, PlateTheme, String)> cases =
       <String, (PlateSpec, PlateTheme, String)>{
         'private': (
           MyanmarPlates.private,
           MyanmarThemes.private,
-          'M D Y 1 4 1 P 3 5 7 4 H O N D A  F I T         ',
+          'MDY|14|1|P|3574|H|O|N|D|A| |F|I|T',
         ),
         'hire': (
           MyanmarPlates.hire,
           MyanmarThemes.hire,
-          'M D Y 8  7 R 3 5 7 4 M A N  T G X       ',
+          'MDY|8|7|R|3574|M|A|N| |T|G|X',
         ),
         'taxi': (
           MyanmarPlates.taxi,
           MyanmarThemes.hire,
-          'Y G N 3 6 E E 5 2 2 9 T O Y O T A  P R O B O X ',
+          'YGN|36|E|E|5229|T|O|Y|O|T|A| |P|R|O|B|O|X',
         ),
         'hearse': (
           MyanmarPlates.hearse,
           MyanmarThemes.hire,
-          'T N I 1 0 H S E 3 8 8 7 T O Y O T A  A L P H A R D',
+          'TNI|10|H|S|E|3887|T|O|Y|O|T|A| |A|L|P|H|A|R|D',
         ),
         'religious': (
           MyanmarPlates.religious,
           MyanmarThemes.religious,
-          'Y G N 1 8 R L G 2 4 6 5 T O Y O T A  W I S H   ',
+          'YGN|18|R|L|G|2465|T|O|Y|O|T|A| |W|I|S|H',
         ),
         'embossed_private': (
           MyanmarPlates.embossedPrivate,
           MyanmarThemes.embossedPrivate,
-          'M D Y 9 F 2 4 8 6',
+          'MDY|9|F|2486',
         ),
         'embossed_commercial': (
           MyanmarPlates.embossedCommercial,
           MyanmarThemes.embossedCommercial,
-          'M D Y 8 L 1 4 9 3',
+          'MDY|8|L|1493',
         ),
         'embossed_touring': (
           MyanmarPlates.embossedTouring,
           MyanmarThemes.embossedTouring,
-          'M D Y 1 D 4 7 9 3',
+          'MDY|1|D|4793',
         ),
         'organisation': (
           MyanmarPlates.organisation,
           MyanmarThemes.organisation,
-          'Y G N I O 1 0 4 7',
+          'YGN|I|O|1047',
         ),
         'motorcycle': (
           MyanmarPlates.motorcycle,
           MyanmarThemes.motorcycle,
-          '2 3 က 1 2 3 4 5',
+          '2|3|က|12345',
         ),
         'rickshaw': (
           MyanmarPlates.rickshaw,
           MyanmarThemes.rickshaw,
-          'ဟ 0 0 1 2 3 4 5',
+          'ဟ|0|0|12345',
         ),
       };
 
@@ -89,7 +89,7 @@ void main() {
       final (PlateSpec spec, PlateTheme theme, String values) = c.value;
       final PlateController controller = PlateController.fromValues(
         spec,
-        values.split(' '),
+        values.split('|'),
       );
       await tester.pumpWidget(
         MaterialApp(

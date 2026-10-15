@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:plate_alphabet/plate_alphabet.dart';
 import 'package:plate_core/plate_core.dart';
 
@@ -127,6 +129,27 @@ abstract final class MyanmarPlates {
     rickshaw,
   ];
 
+  /// [n] cells of [row], from cell [from], as one slot.
+  static PlateSlot _field(
+    PlateAlphabet a,
+    _Row row,
+    int from,
+    int n, {
+    int? minLength,
+  }) => PlateSlot(
+    alphabet: a,
+    box: PlateBox(
+      row.left + from * row.pitch,
+      row.cy - row.box / 2,
+      n * row.pitch,
+      row.box,
+    ),
+    length: n,
+    minLength: minLength,
+    spacing: max(0, row.pitch - 0.6 * 0.72 * row.box),
+  );
+
+  /// One slot per cell, for the chosen alphabets, which hold a single symbol.
   static List<PlateSlot> _cells(PlateAlphabet a, _Row row, int from, int n) =>
       <PlateSlot>[
         for (int i = from; i < from + n; i++)
@@ -134,7 +157,7 @@ abstract final class MyanmarPlates {
       ];
 
   /// `prefix` cells, a dash, four digits, spread across [left, right).
-  static (List<PlateSlot>, List<PlateSlot>, PlateLabel) _serial({
+  static (List<PlateSlot>, PlateSlot, PlateLabel) _serial({
     required int prefix,
     required double left,
     required double right,
@@ -145,7 +168,7 @@ abstract final class MyanmarPlates {
     final _Row row = _Row(left, pitch, cy, box);
     return (
       _cells(MyanmarAlphabets.serialPrefix, row, 0, prefix),
-      _cells(MyanmarAlphabets.digits, row, prefix + 1, 4),
+      _field(MyanmarAlphabets.digits, row, prefix + 1, 4),
       PlateLabel(text: '-', box: row.cell(prefix), glyphHeight: box),
     );
   }
@@ -159,10 +182,10 @@ abstract final class MyanmarPlates {
       box: p.serialBox,
     );
     final List<PlateSlot> slots = <PlateSlot>[
-      ..._cells(MyanmarAlphabets.letters, p.region, 0, 3),
-      ..._cells(MyanmarAlphabets.digits, p.region, 4, 2),
+      _field(MyanmarAlphabets.letters, p.region, 0, 3),
+      _field(MyanmarAlphabets.digits, p.region, 4, 2, minLength: 1),
       ...pre,
-      ...digits,
+      digits,
       ..._cells(MyanmarAlphabets.model, p.make, 0, p.makeCount),
     ];
     int at = 0;
@@ -173,10 +196,10 @@ abstract final class MyanmarPlates {
       162,
       slots,
       <PlateTextGroup>[
-        PlateTextGroup(take(3), key: 'region'),
-        PlateTextGroup(take(2), key: 'township'),
+        PlateTextGroup(take(1), key: 'region'),
+        PlateTextGroup(take(1), key: 'township'),
         PlateTextGroup(take(prefix), key: 'prefix'),
-        PlateTextGroup(take(4), key: 'serial'),
+        PlateTextGroup(take(1), key: 'serial'),
         PlateTextGroup(take(p.makeCount), key: 'make'),
       ],
       <PlateLabel>[
@@ -195,9 +218,9 @@ abstract final class MyanmarPlates {
       box: _embossedSerialBox,
     );
     final List<PlateSlot> slots = <PlateSlot>[
-      ..._cells(MyanmarAlphabets.letters, _embossedRegion, 0, 3),
+      _field(MyanmarAlphabets.letters, _embossedRegion, 0, 3),
       ...pre,
-      ...digits,
+      digits,
     ];
     return _spec(
       id,
@@ -205,9 +228,9 @@ abstract final class MyanmarPlates {
       162,
       slots,
       <PlateTextGroup>[
-        PlateTextGroup(<int>[0, 1, 2], key: 'region'),
-        PlateTextGroup(<int>[3, 4], key: 'prefix'),
-        PlateTextGroup(<int>[5, 6, 7, 8], key: 'serial'),
+        PlateTextGroup(<int>[0], key: 'region'),
+        PlateTextGroup(<int>[1, 2], key: 'prefix'),
+        PlateTextGroup(<int>[3], key: 'serial'),
       ],
       <PlateLabel>[dash],
     );
@@ -219,11 +242,11 @@ abstract final class MyanmarPlates {
     162,
     <PlateSlot>[
       ..._cells(MyanmarAlphabets.burmeseMixed, _burmeseTop, 0, 3),
-      ..._cells(MyanmarAlphabets.burmeseDigits, _burmeseBottom, 0, 5),
+      _field(MyanmarAlphabets.burmeseDigits, _burmeseBottom, 0, 5),
     ],
     <PlateTextGroup>[
       PlateTextGroup(<int>[0, 1, 2], key: 'letters'),
-      PlateTextGroup(<int>[3, 4, 5, 6, 7], key: 'serial'),
+      PlateTextGroup(<int>[3], key: 'serial'),
     ],
     const <PlateLabel>[],
   );

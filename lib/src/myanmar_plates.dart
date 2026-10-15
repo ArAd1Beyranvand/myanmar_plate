@@ -4,6 +4,7 @@ import 'package:plate_alphabet/plate_alphabet.dart';
 import 'package:plate_core/plate_core.dart';
 
 import 'myanmar_country.dart';
+import 'myanmar_regions.dart';
 
 /// One row of cells at a constant pitch: first cell's left edge, pitch, the
 /// row's ink centre line and the slot height that reproduces its ink.
@@ -206,6 +207,7 @@ abstract final class MyanmarPlates {
         PlateLabel(text: '-', box: p.region.cell(3), glyphHeight: p.region.box),
         dash,
       ],
+      resolveRegion: MyanmarRegions.captionOf,
     );
   }
 
@@ -233,6 +235,7 @@ abstract final class MyanmarPlates {
         PlateTextGroup(<int>[3], key: 'serial'),
       ],
       <PlateLabel>[dash],
+      resolveRegion: MyanmarRegions.captionOf,
     );
   }
 
@@ -257,8 +260,9 @@ abstract final class MyanmarPlates {
     double height,
     List<PlateSlot> slots,
     List<PlateTextGroup> groups,
-    List<PlateLabel> labels,
-  ) => PlateSpec(
+    List<PlateLabel> labels, {
+    PlateLabelResolver? resolveRegion,
+  }) => PlateSpec(
     id: id,
     country: MyanmarCountry.myanmar,
     canvasWidth: width,
@@ -268,5 +272,6 @@ abstract final class MyanmarPlates {
     slots: slots,
     textGroups: groups,
     labels: labels,
+    resolveRegion: resolveRegion,
   );
 }

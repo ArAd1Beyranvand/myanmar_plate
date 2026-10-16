@@ -97,8 +97,7 @@ const _Row _burmeseBottom = _Row(42, 38.6, 112, 100);
 /// Not implemented: the army plate (a star and bracketed Burmese numerals, no
 /// format in the article), the volunteer-service (green) and embassy (white)
 /// fields, which have no photograph, and the 1999 formats. The flag in the
-/// article is not printed on any plate. The article names no Israel-specific
-/// value.
+/// article is not printed on any plate.
 abstract final class MyanmarPlates {
   static final PlateSpec private = _threeRow('mm.private', _private, 2);
   static final PlateSpec hire = _threeRow('mm.hire', _standard, 2);

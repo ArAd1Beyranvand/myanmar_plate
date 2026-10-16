@@ -1,5 +1,3 @@
-import 'package:plate_core/plate_core.dart';
-
 /// Locates a Myanmar plate from its three-letter state/region code.
 ///
 /// Source: the "Regional codes" table of
@@ -36,7 +34,6 @@ abstract final class MyanmarRegions {
     return names.length == 1 ? names.single : null;
   }
 
-  /// A [PlateLabelResolver] for [PlateSpec.resolveRegion].
   static String? captionOf(String Function(String key) group) =>
       lookup(group('region'));
 }

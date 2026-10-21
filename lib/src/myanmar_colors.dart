@@ -1,12 +1,7 @@
 import 'package:flutter/widgets.dart';
 
-/// Colours of the Myanmar plates, each the median of the stroke interiors or
-/// field of one colour-balanced, flattened photo (`platekit` brief).
-///
-/// The 2021 plates are printed flat; the 2019 embossed plates are the older
-/// photographs and carry glare, so their inks are greyer. The article's
-/// "green" volunteer-service and white embassy fields have no photograph and
-/// are not implemented.
+/// Medians of the stroke interiors or field of one flattened photo each.
+/// The 2019 embossed photographs carry glare, so their inks are greyer.
 abstract final class MyanmarColors {
   /// Private field, `Myanmar_License_Plate_Current_Format`.
   static const Color black = Color(0xFF000000);

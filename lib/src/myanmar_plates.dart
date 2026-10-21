@@ -88,16 +88,9 @@ const _Row _burmeseBottom = _Row(42, 38.6, 112, 100);
 
 /// Myanmar's plates. Colour is the theme's.
 ///
-/// Implemented: private, hire, taxi, hearse and religious on the 2021 layout
-/// ([MyanmarThemes.private], [MyanmarThemes.hire] for hire, taxi and hearse,
-/// [MyanmarThemes.religious]); the 2019 embossed private, commercial, touring
-/// and organisation plates; and the Burmese-script motorcycle and rickshaw
-/// plates.
-///
-/// Not implemented: the army plate (a star and bracketed Burmese numerals, no
-/// format in the article), the volunteer-service (green) and embassy (white)
-/// fields, which have no photograph, and the 1999 formats. The flag in the
-/// article is not printed on any plate.
+/// Not implemented: the army plate (no format in the article), the
+/// volunteer-service (green) and embassy (white) fields, which have no
+/// photograph, and the 1999 formats.
 abstract final class MyanmarPlates {
   static final PlateSpec private = _threeRow('mm.private', _private, 2);
   static final PlateSpec hire = _threeRow('mm.hire', _standard, 2);

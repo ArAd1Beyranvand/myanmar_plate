@@ -1,7 +1,7 @@
 name: myanmar_plate
 description: "Myanmar's licence plates for the plate_core library — private, hire, religious, embossed and Burmese-script plates, their themes, alphabets and advisory validators."
 version: 0.1.0
-publish_to: none
+repository: https://github.com/ArAd1Beyranvand/myanmar_plate
 resolution: workspace
 
 environment:

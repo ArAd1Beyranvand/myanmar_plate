@@ -27,10 +27,8 @@ void main() {
   test('three-row and embossed plates follow each letter', () {
     for (final PlateSpec spec in <PlateSpec>[
       MyanmarPlates.private,
-      MyanmarPlates.taxi,
       MyanmarPlates.hearse,
-      MyanmarPlates.embossedPrivate,
-      MyanmarPlates.organisation,
+      MyanmarPlates.embossed,
     ]) {
       final PlateController c = PlateController(spec: spec);
       expect(c.regionCaption, isNull, reason: spec.id);
@@ -41,6 +39,6 @@ void main() {
       c.setGroup('region', 'SH');
       expect(c.regionCaption, 'Shan', reason: spec.id);
     }
-    expect(MyanmarPlates.motorcycle.resolveRegion, isNull);
+    expect(MyanmarPlates.burmese.resolveRegion, isNull);
   });
 }

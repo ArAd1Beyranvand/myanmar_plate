@@ -9,9 +9,15 @@ import 'myanmar_colors.dart';
 /// is measured. Taxi and hearse use [hire]: the article lists them on the same
 /// red field.
 abstract final class MyanmarThemes {
-  static final PlateTheme private = _ink(MyanmarColors.black, MyanmarColors.white);
+  static final PlateTheme private = _ink(
+    MyanmarColors.black,
+    MyanmarColors.white,
+  );
   static final PlateTheme hire = _ink(MyanmarColors.red, MyanmarColors.white);
-  static final PlateTheme religious = _ink(MyanmarColors.yellow, MyanmarColors.black);
+  static final PlateTheme religious = _ink(
+    MyanmarColors.yellow,
+    MyanmarColors.black,
+  );
 
   static final PlateTheme embossedPrivate = _ink(
     MyanmarColors.embossedBlack,
@@ -29,8 +35,14 @@ abstract final class MyanmarThemes {
     MyanmarColors.organisation,
     MyanmarColors.organisationInk,
   );
-  static final PlateTheme motorcycle = _ink(MyanmarColors.motorcycle, MyanmarColors.motorcycleInk);
-  static final PlateTheme rickshaw = _ink(MyanmarColors.rickshaw, MyanmarColors.rickshawInk);
+  static final PlateTheme motorcycle = _ink(
+    MyanmarColors.motorcycle,
+    MyanmarColors.motorcycleInk,
+  );
+  static final PlateTheme rickshaw = _ink(
+    MyanmarColors.rickshaw,
+    MyanmarColors.rickshawInk,
+  );
 }
 
 PlateTheme _ink(Color field, Color ink) => PlateTheme.monochrome(

@@ -93,32 +93,20 @@ const _Row _burmeseBottom = _Row(42, 38.6, 112, 100);
 /// photograph, and the 1999 formats.
 abstract final class MyanmarPlates {
   static final PlateSpec private = _threeRow('mm.private', _private, 2);
+
+  /// Hire car and taxi: pair with `MyanmarThemes.hire`.
   static final PlateSpec hire = _threeRow('mm.hire', _standard, 2);
-  static final PlateSpec taxi = _threeRow('mm.taxi', _standard, 2);
+
+  /// Hearse and religious: pair with `MyanmarThemes.hire` / `.religious`.
   static final PlateSpec hearse = _threeRow('mm.hearse', _standard, 3);
-  static final PlateSpec religious = _threeRow('mm.religious', _standard, 3);
 
-  static final PlateSpec embossedPrivate = _embossed('mm.embossed_private');
-  static final PlateSpec embossedCommercial = _embossed('mm.embossed_commercial');
-  static final PlateSpec embossedTouring = _embossed('mm.embossed_touring');
-  static final PlateSpec organisation = _embossed('mm.organisation');
+  /// Private, commercial, touring and organisation: the theme tells them apart.
+  static final PlateSpec embossed = _embossed('mm.embossed');
 
-  static final PlateSpec motorcycle = _burmese('mm.motorcycle');
-  static final PlateSpec rickshaw = _burmese('mm.rickshaw');
+  /// Motorcycle and rickshaw.
+  static final PlateSpec burmese = _burmese('mm.burmese');
 
-  static List<PlateSpec> get all => <PlateSpec>[
-    private,
-    hire,
-    taxi,
-    hearse,
-    religious,
-    embossedPrivate,
-    embossedCommercial,
-    embossedTouring,
-    organisation,
-    motorcycle,
-    rickshaw,
-  ];
+  static List<PlateSpec> get all => <PlateSpec>[private, hire, hearse, embossed, burmese];
 
   /// [n] cells of [row], from cell [from], as one slot.
   static PlateSlot _field(PlateAlphabet a, _Row row, int from, int n, {int? minLength}) =>

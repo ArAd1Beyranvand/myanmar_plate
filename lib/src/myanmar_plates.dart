@@ -106,22 +106,40 @@ abstract final class MyanmarPlates {
   /// Motorcycle and rickshaw.
   static final PlateSpec burmese = _burmese('mm.burmese');
 
-  static List<PlateSpec> get all => <PlateSpec>[private, hire, hearse, embossed, burmese];
+  static List<PlateSpec> get all => <PlateSpec>[
+    private,
+    hire,
+    hearse,
+    embossed,
+    burmese,
+  ];
 
   /// [n] cells of [row], from cell [from], as one slot.
-  static PlateSlot _field(PlateAlphabet a, _Row row, int from, int n, {int? minLength}) =>
-      PlateSlot(
-        alphabet: a,
-        box: PlateBox(row.left + from * row.pitch, row.cy - row.box / 2, n * row.pitch, row.box),
-        length: n,
-        minLength: minLength,
-        spacing: max(0, row.pitch - 0.6 * 0.72 * row.box),
-      );
+  static PlateSlot _field(
+    PlateAlphabet a,
+    _Row row,
+    int from,
+    int n, {
+    int? minLength,
+  }) => PlateSlot(
+    alphabet: a,
+    box: PlateBox(
+      row.left + from * row.pitch,
+      row.cy - row.box / 2,
+      n * row.pitch,
+      row.box,
+    ),
+    length: n,
+    minLength: minLength,
+    spacing: max(0, row.pitch - 0.6 * 0.72 * row.box),
+  );
 
   /// One slot per cell, for the chosen alphabets, which hold a single symbol.
-  static List<PlateSlot> _cells(PlateAlphabet a, _Row row, int from, int n) => <PlateSlot>[
-    for (int i = from; i < from + n; i++) PlateSlot(alphabet: a, box: row.cell(i)),
-  ];
+  static List<PlateSlot> _cells(PlateAlphabet a, _Row row, int from, int n) =>
+      <PlateSlot>[
+        for (int i = from; i < from + n; i++)
+          PlateSlot(alphabet: a, box: row.cell(i)),
+      ];
 
   /// `prefix` cells, a dash, four digits, spread across [left, right).
   static (List<PlateSlot>, PlateSlot, PlateLabel) _serial({
@@ -169,7 +187,10 @@ abstract final class MyanmarPlates {
         PlateTextGroup(take(1), key: 'serial'),
         PlateTextGroup(take(p.makeCount), key: 'make'),
       ],
-      <PlateLabel>[PlateLabel(text: '-', box: p.region.cell(3), glyphHeight: p.region.box), dash],
+      <PlateLabel>[
+        PlateLabel(text: '-', box: p.region.cell(3), glyphHeight: p.region.box),
+        dash,
+      ],
       resolveRegion: MyanmarRegions.captionOf,
     );
   }

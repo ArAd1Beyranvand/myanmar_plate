@@ -7,6 +7,9 @@ const Map<String, int> myanmarRegions = <String, int>{
   'YGN': 45,
 };
 
+// TODO(py): [D4-code] hand-port; reason strings are the contract, keep them byte-identical.
+// TODO(ts): [D4-code] hand-port; reason strings are the contract, keep them byte-identical.
+// TODO(kt): [D4-code] hand-port; reason strings are the contract, keep them byte-identical.
 /// Judges a plate with a `region` group (`YGN-36`) and a four-digit `serial`.
 /// Reports, never bars a keystroke. The township, where the plate has one, is
 /// checked against its region's range.

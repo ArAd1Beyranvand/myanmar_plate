@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:plate_alphabet/plate_alphabet.dart';
 import 'package:plate_core/plate_core.dart';
 
@@ -121,17 +119,14 @@ abstract final class MyanmarPlates {
     int from,
     int n, {
     int? minLength,
-  }) => PlateSlot(
-    alphabet: a,
-    box: PlateBox(
-      row.left + from * row.pitch,
-      row.cy - row.box / 2,
-      n * row.pitch,
-      row.box,
-    ),
-    length: n,
+  }) => plateRun(
+    a,
+    n,
+    left: row.left + from * row.pitch,
+    top: row.cy - row.box / 2,
+    pitch: row.pitch,
+    height: row.box,
     minLength: minLength,
-    spacing: max(0, row.pitch - 0.6 * 0.72 * row.box),
   );
 
   /// One slot per cell, for the chosen alphabets, which hold a single symbol.
@@ -251,8 +246,6 @@ abstract final class MyanmarPlates {
     country: MyanmarCountry.myanmar,
     canvasWidth: width,
     canvasHeight: height,
-    panel: const PlatePanel(box: PlateBox(0, 0, 0, 0)),
-    noPanel: true,
     slots: slots,
     textGroups: groups,
     labels: labels,

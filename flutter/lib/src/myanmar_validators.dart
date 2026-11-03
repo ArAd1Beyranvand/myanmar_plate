@@ -7,17 +7,11 @@ const Map<String, int> myanmarRegions = <String, int>{
   'YGN': 45,
 };
 
-// TODO(py): [D4-code] hand-port; reason strings are the contract, keep them byte-identical.
-// TODO(ts): [D4-code] hand-port; reason strings are the contract, keep them byte-identical.
-// TODO(kt): [D4-code] hand-port; reason strings are the contract, keep them byte-identical.
 /// Judges a plate with a `region` group (`YGN-36`) and a four-digit `serial`.
 /// Reports, never bars a keystroke. The township, where the plate has one, is
 /// checked against its region's range.
 class MyanmarValidator extends GatedPlateValidator {
-  const MyanmarValidator();
-
-  @override
-  String get gateGroup => 'region';
+  const MyanmarValidator() : super('region');
 
   static const String reasonRegion = 'The region is not a Myanmar code.';
   static const String reasonTownship = 'The township is out of range.';
@@ -45,10 +39,7 @@ class MyanmarValidator extends GatedPlateValidator {
 /// Judges a Burmese-script motorcycle or rickshaw plate: three characters over
 /// five numerals.
 class MyanmarBurmeseValidator extends GatedPlateValidator {
-  const MyanmarBurmeseValidator();
-
-  @override
-  String get gateGroup => 'letters';
+  const MyanmarBurmeseValidator() : super('letters');
 
   static const String reasonLetters = 'The top row is three characters.';
   static const String reasonSerial = 'The number is five numerals.';

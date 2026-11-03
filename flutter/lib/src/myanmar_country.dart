@@ -7,7 +7,6 @@ import 'myanmar_colors.dart';
 abstract final class MyanmarCountry {
   static const PlateCountry myanmar = PlateCountry(
     code: 'mm',
-    captionLines: <String>[],
     panelColor: MyanmarColors.black,
     panelTextColor: MyanmarColors.white,
   );
